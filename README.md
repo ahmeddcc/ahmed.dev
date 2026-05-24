@@ -28,7 +28,7 @@ Navigate to `/admin` to access the CMS.
 
 **Default credentials:**
 - Username: `ahmed`
-- Password: `ahmed2024portfolio`
+- Password: ``
 
 > Change these in `src/constants/index.js` before deploying.
 
