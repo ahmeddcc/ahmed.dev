@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, XCircle, Info, AlertTriangle, X } from 'lucide-react';
-import { useToastContext } from '@/context/ToastContext';
+import { useToast } from '@/hooks/useContexts';
 
 const icons = {
   success: <CheckCircle size={16} className="text-[#63d3bf]" />,
@@ -17,7 +17,7 @@ const borders = {
 };
 
 export function ToastContainer() {
-  const { toasts, removeToast } = useToastContext();
+  const { toasts, removeToast } = useToast();
 
   return (
     <div className="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none">

@@ -2,8 +2,7 @@ import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Zap } from 'lucide-react';
 import { PageLayout, Section, SectionHeader } from '@/components/layout/PageLayout';
 import { MotionSection } from '@/components/shared/MotionSection';
-import { usePortfolio } from '@/context/PortfolioContext';
-import { staggerContainer, fadeUp } from '@/animations/variants';
+import { usePortfolio } from '@/hooks/useContexts';
 
 const SKILL_COLORS = {
   Frontend: '#63d3bf',

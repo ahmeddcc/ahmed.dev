@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/shared/SocialIcons";
 import { PageLayout, Section, SectionHeader } from '@/components/layout/PageLayout';
 import { MotionSection } from '@/components/shared/MotionSection';
 import { Button } from '@/components/ui/Button';
 import { Input, Textarea } from '@/components/ui/Input';
-import { usePortfolio } from '@/context/PortfolioContext';
-import { useToast } from '@/hooks/useToast';
+import { usePortfolio } from '@/hooks/useContexts';
+import { useToast } from '@/hooks/useContexts';
 import { contactService } from '@/services/contactService';
 import { validateForm, contactSchema } from '@/services/validationService';
 

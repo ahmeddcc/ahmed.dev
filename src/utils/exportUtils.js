@@ -1,5 +1,4 @@
 import { safeJsonStringify } from './safeJsonParse';
-import { sanitizeCsvValue } from './escapeHtml';
 
 export function exportAsJson(data, filename = 'portfolio-backup') {
   const json = safeJsonStringify(data, '{}');

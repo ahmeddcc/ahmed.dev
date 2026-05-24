@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, ChevronRight } from 'lucide-react';
+import { Briefcase, MapPin } from 'lucide-react';
 import { PageLayout, Section, SectionHeader } from '@/components/layout/PageLayout';
-import { MotionSection } from '@/components/shared/MotionSection';
 import { Badge } from '@/components/ui/Badge';
-import { usePortfolio } from '@/context/PortfolioContext';
+import { usePortfolio } from '@/hooks/useContexts';
 import { staggerContainer, fadeUp } from '@/animations/variants';
 
 export function ExperiencePage() {
@@ -19,42 +18,49 @@ export function ExperiencePage() {
           {/* Timeline line */}
           <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#63d3bf] via-[#a78bfa] to-transparent hidden md:block" />
 
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-8">
-            {experience.map((exp, i) => (
-              <motion.div key={exp.id} variants={fadeUp} className="md:pl-16 relative">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-12">
+            {experience.map((exp) => (
+              <motion.div key={exp.id} variants={fadeUp} className="md:pl-20 relative group">
                 {/* Dot */}
-                <div className="hidden md:flex absolute left-0 w-12 h-12 rounded-full bg-[#111827] border-2 border-[#63d3bf]/40 items-center justify-center">
-                  <Briefcase size={16} className="text-[#63d3bf]" />
+                <div className="hidden md:flex absolute left-0 w-12 h-12 rounded-2xl bg-[#111827] border border-[rgba(255,255,255,0.07)] items-center justify-center group-hover:border-[#63d3bf]/50 transition-colors z-10 shadow-xl">
+                  <Briefcase size={18} className="text-[#63d3bf]" />
                 </div>
 
-                <div className="glass rounded-2xl border border-[rgba(255,255,255,0.05)] p-6 hover:border-[rgba(99,211,191,0.15)] transition-all group">
-                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-4">
+                <div className="glass rounded-3xl border border-[rgba(255,255,255,0.05)] p-6 sm:p-8 hover:border-[rgba(99,211,191,0.2)] transition-all relative">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                     <div>
-                      <h3 className="text-lg font-bold font-display text-[#f0f4ff] group-hover:text-[#63d3bf] transition-colors">{exp.role}</h3>
-                      <p className="text-[#63d3bf] font-medium text-sm mt-0.5">{exp.company}</p>
+                      <h3 className="text-xl font-bold font-display text-[#f0f4ff] group-hover:text-[#63d3bf] transition-colors">{exp.role}</h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <p className="text-[#63d3bf] font-semibold tracking-wide">{exp.company}</p>
+                        {exp.location && (
+                          <>
+                            <span className="w-1 h-1 rounded-full bg-[#4b5563]" />
+                            <span className="flex items-center gap-1 text-xs text-[#8892a4]"><MapPin size={12} />{exp.location}</span>
+                          </>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex flex-col items-start md:items-end gap-1 shrink-0">
-                      <Badge variant="default">{exp.period}</Badge>
-                      <span className="flex items-center gap-1 text-xs text-[#4b5563]"><MapPin size={11} />{exp.location}</span>
+                    <div className="shrink-0">
+                      <Badge variant="violet" className="py-1 px-4">{exp.period}</Badge>
                     </div>
                   </div>
 
-                  <p className="text-[#8892a4] text-sm leading-relaxed mb-4">{exp.description}</p>
+                  <p className="text-[#8892a4] text-base leading-relaxed mb-6">{exp.description}</p>
 
                   {exp.highlights && exp.highlights.length > 0 && (
-                    <ul className="space-y-2 mb-4">
+                    <div className="space-y-3 mb-8">
                       {exp.highlights.map((h, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm text-[#8892a4]">
-                          <ChevronRight size={14} className="text-[#63d3bf] mt-0.5 shrink-0" />
-                          {h}
-                        </li>
+                        <div key={j} className="flex items-start gap-3 text-sm text-[#8892a4]">
+                          <div className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full bg-[#63d3bf]/40" />
+                          <p>{h}</p>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   )}
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 pt-6 border-t border-[rgba(255,255,255,0.05)]">
                     {exp.technologies.map((tech) => (
-                      <Badge key={tech} variant="gray">{tech}</Badge>
+                      <Badge key={tech} variant="gray" className="bg-[#080b14]">{tech}</Badge>
                     ))}
                   </div>
                 </div>

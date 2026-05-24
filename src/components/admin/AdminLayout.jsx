@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { AdminSidebar } from './AdminSidebar';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
 

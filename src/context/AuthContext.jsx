@@ -1,17 +1,10 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { authService } from '@/services/authService';
-
-const AuthContext = createContext(null);
+import { AuthContext } from './contexts';
 
 export function AuthProvider({ children }) {
-  const [session, setSession] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const s = authService.getSession();
-    setSession(s);
-    setLoading(false);
-  }, []);
+  const [session, setSession] = useState(() => authService.getSession());
+  const [loading] = useState(false);
 
   const login = useCallback((username, password) => {
     const result = authService.login(username, password);
@@ -29,10 +22,4 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error('useAuth must be used inside AuthProvider');
-  return ctx;
 }
