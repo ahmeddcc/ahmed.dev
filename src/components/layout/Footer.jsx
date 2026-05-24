@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import { Code2, Heart } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/shared/SocialIcons";
-import { usePortfolio } from '@/context/PortfolioContext';
+import { usePortfolio } from '@/hooks/useContexts';
 
 export function Footer() {
   const { data } = usePortfolio();

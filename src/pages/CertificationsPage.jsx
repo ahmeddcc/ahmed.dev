@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Award, Calendar, Hash } from 'lucide-react';
 import { PageLayout, Section, SectionHeader } from '@/components/layout/PageLayout';
-import { MotionSection } from '@/components/shared/MotionSection';
-import { Badge } from '@/components/ui/Badge';
-import { usePortfolio } from '@/context/PortfolioContext';
+import { usePortfolio } from '@/hooks/useContexts';
 import { staggerContainer, scaleIn } from '@/animations/variants';
 
 export function CertificationsPage() {

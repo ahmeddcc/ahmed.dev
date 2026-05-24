@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, User, Eye, EyeOff, Code2 } from 'lucide-react';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks/useContexts';
 import { Button } from '@/components/ui/Button';
 
 export function AdminLoginPage() {

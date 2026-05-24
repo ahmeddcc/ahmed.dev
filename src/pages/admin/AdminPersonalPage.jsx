@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Trash2, Save } from 'lucide-react';
-import { usePortfolio } from '@/context/PortfolioContext';
-import { useToast } from '@/hooks/useToast';
+import { usePortfolio, useToast } from '@/hooks/useContexts';
 import { Button } from '@/components/ui/Button';
 import { Input, Textarea } from '@/components/ui/Input';
 
@@ -11,20 +10,28 @@ export function AdminPersonalPage() {
   const { data, updateSection } = usePortfolio();
   const toast = useToast();
 
-  const [personal, setPersonal] = useState(data?.personal || {});
-  const [social, setSocial] = useState(data?.social || {});
-  const [stats, setStats] = useState(data?.stats || []);
-  const [skills, setSkills] = useState(data?.skills || []);
+  const [personal, setPersonal] = useState({});
+  const [social, setSocial] = useState({});
+  const [stats, setStats] = useState([]);
+  const [skills, setSkills] = useState([]);
   const [saving, setSaving] = useState(false);
 
+  // Use a lazy state initializer or a ref-based approach to avoid synchronous setState in effect
+  const [dataLoaded, setDataLoaded] = useState(false);
+
   useEffect(() => {
-    if (data) {
-      setPersonal(data.personal || {});
-      setSocial(data.social || {});
-      setStats(data.stats || []);
-      setSkills(data.skills || []);
+    let timeout;
+    if (data && !dataLoaded) {
+      timeout = setTimeout(() => {
+        setPersonal(data.personal || {});
+        setSocial(data.social || {});
+        setStats(data.stats || []);
+        setSkills(data.skills || []);
+        setDataLoaded(true);
+      }, 0);
     }
-  }, [data]);
+    return () => clearTimeout(timeout);
+  }, [data, dataLoaded]);
 
   const handleSave = async () => {
     setSaving(true);

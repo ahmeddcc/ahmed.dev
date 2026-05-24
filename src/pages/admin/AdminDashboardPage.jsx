@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FolderOpen, Briefcase, Award, Activity, Download, Upload, ArrowRight } from 'lucide-react';
-import { usePortfolio } from '@/context/PortfolioContext';
-import { useToast } from '@/hooks/useToast';
+import { usePortfolio } from '@/hooks/useContexts';
+import { useToast } from '@/hooks/useContexts';
 import { backupService } from '@/services/backupService';
 import { staggerContainer, scaleIn } from '@/animations/variants';
 

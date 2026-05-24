@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FolderOpen, Briefcase, Award, User, Settings, LogOut, Code2 } from 'lucide-react';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
-import { useToast } from '@/hooks/useToast';
+import { useToast } from '@/hooks/useContexts';
 
 const NAV = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/admin/dashboard' },

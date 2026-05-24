@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { safeJsonParse, safeJsonStringify } from '@/utils/safeJsonParse';
 
 export function useLocalStorage(key, initialValue) {

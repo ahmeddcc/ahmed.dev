@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Pencil, Trash2, MapPin } from 'lucide-react';
-import { usePortfolio } from '@/context/PortfolioContext';
-import { useToast } from '@/hooks/useToast';
+import { usePortfolio } from '@/hooks/useContexts';
+import { useToast } from '@/hooks/useContexts';
 import { Modal, ConfirmDialog } from '@/components/ui/Modal';
 import { Button } from '@/components/ui/Button';
 import { Input, Textarea } from '@/components/ui/Input';

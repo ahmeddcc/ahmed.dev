@@ -1,11 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 import { storageService } from '@/services/storageService';
-
-const PortfolioContext = createContext(null);
+import { PortfolioContext } from './contexts';
 
 const initialState = {
-  data: null,
-  loading: true,
+  data: storageService.getData(),
+  loading: false,
 };
 
 function portfolioReducer(state, action) {
@@ -26,8 +25,14 @@ export function PortfolioProvider({ children }) {
   const [state, dispatch] = useReducer(portfolioReducer, initialState);
 
   useEffect(() => {
-    const data = storageService.getData();
-    dispatch({ type: 'LOAD', payload: data });
+    const handleStorage = (e) => {
+      if (e.key === 'portfolio_data') {
+        const data = storageService.getData();
+        dispatch({ type: 'LOAD', payload: data });
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
   }, []);
 
   const updateSection = (section, value) => {
@@ -45,10 +50,4 @@ export function PortfolioProvider({ children }) {
       {children}
     </PortfolioContext.Provider>
   );
-}
-
-export function usePortfolio() {
-  const ctx = useContext(PortfolioContext);
-  if (!ctx) throw new Error('usePortfolio must be used inside PortfolioProvider');
-  return ctx;
 }

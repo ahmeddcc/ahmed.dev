@@ -12,9 +12,11 @@ export const contactService = {
       throw new Error(`Please wait ${remaining} seconds before sending another message.`);
     }
 
+    // Sanitize input data to prevent XSS
     const safe = sanitizeObject(formData);
+    console.log('Sending sanitized message:', safe);
 
-    // Simulate API call (replace with real endpoint)
+    // Simulate API call (replace with real endpoint like Formspree, EmailJS, etc.)
     await new Promise((resolve) => setTimeout(resolve, 1200));
 
     lastSubmitTime = Date.now();
